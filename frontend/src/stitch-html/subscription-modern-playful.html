@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#006b5f",
+                        "primary-dim": "#005048",
+                        "primary-light": "#14b8a6",
+                    },
+                    fontFamily: {
+                        headline: ["Plus Jakarta Sans"],
+                        body: ["Be Vietnam Pro"],
+                    }
+                }
+            }
+          }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { font-family: 'Be Vietnam Pro', sans-serif; background: #fbfaee; color: #1b1c15; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2.5rem; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .plan-card-basic { background: #ffffff; border: 1.5px solid #efeee3; }
+        .plan-card-pro { background: linear-gradient(135deg, #006b5f 0%, #14b8a6 100%); color: white; }
+        .plan-card-vip { background: #ffffff; border: 1.5px solid #efeee3; }
+        .reveal-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        .bg-noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05; pointer-events: none; z-index: 1;
+        }
+    </style>
+</head>
+<body class="pt-24 pb-32 px-6">
+    <div class="bg-noise"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <header class="text-center mb-20 reveal-up">
+            <h1 class="text-5xl md:text-7xl font-headline font-black text-primary tracking-tight mb-6">Gói Chăm Sóc Định Kỳ</h1>
+            <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto font-medium leading-relaxed">
+                Tiết kiệm hơn, chăm sóc tốt hơn. PETT đồng hành cùng thú cưng của bạn mỗi tháng.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            <!-- Basic Plan -->
+            <div class="plan-card-basic p-10 flex flex-col group reveal-up rounded-[3rem]">
+                <div class="grow">
+                    <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mb-8">
+                        <span class="material-symbols-outlined text-4xl text-primary">potted_plant</span>
+                    </div>
+                    <h2 class="text-3xl font-headline font-black mb-2">Basic Care</h2>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black text-primary">499.000đ</span>
+                        <span class="text-sm font-bold text-on-surface-variant">/tháng</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                            <span class="font-medium">Thức ăn hạt cao cấp (3kg)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                            <span class="font-medium">Cát vệ sinh / Tã lót</span>
+                        </li>
+                    </ul>
+                </div>
+                <button data-route="/checkout-subscription" data-subscription-id="plan-basic" data-subscription-name="Basic Care" data-subscription-price="499000" data-subscription-description="Gói chăm sóc cơ bản hàng tháng" class="w-full py-5 bg-primary text-white font-black text-lg rounded-2xl hover:scale-105 transition-all">Đăng ký ngay</button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="plan-card-pro p-10 flex flex-col group reveal-up relative rounded-[3rem] shadow-2xl shadow-primary/20 scale-105 z-20">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-primary px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest shadow-xl">Phổ biến nhất</div>
+                <div class="grow">
+                    <div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mb-8">
+                        <span class="material-symbols-outlined text-4xl text-white">award_star</span>
+                    </div>
+                    <h2 class="text-3xl font-headline font-black mb-2">Pro Care</h2>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black text-white">899.000đ</span>
+                        <span class="text-sm font-bold text-white/70">/tháng</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-white/50 text-xl">verified</span>
+                            <span class="font-medium">Toàn bộ gói Basic</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-white/50 text-xl">verified</span>
+                            <span class="font-medium">Combo Snack & Treats</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-white/50 text-xl">verified</span>
+                            <span class="font-medium">Sữa tắm chuyên dụng</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-white text-xl">percent</span>
+                            <span class="font-black text-white">GIẢM GIÁ 10% TOÀN SHOP</span>
+                        </li>
+                    </ul>
+                </div>
+                <button data-route="/checkout-subscription" data-subscription-id="plan-pro" data-subscription-name="Pro Care" data-subscription-price="899000" data-subscription-description="Gói chăm sóc nâng cao hàng tháng" class="w-full py-5 bg-white text-primary font-black text-lg rounded-2xl hover:scale-105 transition-all">Đăng ký ngay</button>
+            </div>
+
+            <!-- VIP Plan -->
+            <div class="plan-card-vip p-10 flex flex-col group reveal-up rounded-[3rem]">
+                <div class="grow">
+                    <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mb-8">
+                        <span class="material-symbols-outlined text-4xl text-primary">workspace_premium</span>
+                    </div>
+                    <h2 class="text-3xl font-headline font-black mb-2">VIP Care</h2>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black text-primary">1.499.000đ</span>
+                        <span class="text-sm font-bold text-on-surface-variant">/tháng</span>
+                    </div>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                            <span class="font-medium">Toàn bộ gói Pro</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                            <span class="font-medium">Thực phẩm chức năng</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                            <span class="font-medium">Quà tặng đồ chơi cao cấp</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[#ff6b6b] text-xl">percent</span>
+                            <span class="font-black text-[#ff6b6b]">GIẢM GIÁ 15% TOÀN SHOP</span>
+                        </li>
+                    </ul>
+                </div>
+                <button data-route="/checkout-subscription" data-subscription-id="plan-vip" data-subscription-name="VIP Care" data-subscription-price="1499000" data-subscription-description="Gói chăm sóc toàn diện cao cấp" class="w-full py-5 bg-primary text-white font-black text-lg rounded-2xl hover:scale-105 transition-all">Đăng ký ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
