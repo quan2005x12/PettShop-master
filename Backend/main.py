@@ -374,11 +374,33 @@ def create_order(
             "images": db_product.images
         })
 
+    # Recalculate total amount on server side with discounts and shipping
+    product_subtotal = 0
+    subscription_subtotal = 0
+    for item in valid_items:
+        if str(item.get("id")).startswith("plan-") or item.get("category") == "subscription":
+            subscription_subtotal += int(item.get("price", 0)) * int(item.get("quantity", 1))
+        else:
+            product_subtotal += int(item.get("price", 0)) * int(item.get("quantity", 1))
+
+    # Apply discount based on current user tier (only on products)
+    discount = 0
+    if current_user.subscription_tier == "vip":
+        discount = int(product_subtotal * 0.10)
+    elif current_user.subscription_tier == "pro":
+        discount = int(product_subtotal * 0.05)
+    
+    # Apply shipping fee
+    subtotal = product_subtotal + subscription_subtotal
+    shipping = 0 if (subtotal >= 500000 or subtotal == 0) else 30000
+    
+    final_total = subtotal + shipping - discount
+
     new_order = models.Order(
         order_code=f"PETT-{str(uuid.uuid4())[:8].upper()}",
         user_id=current_user.id,
         items=valid_items,
-        total_amount=calculated_total,
+        total_amount=final_total,
         payment_method=order_data.payment_method,
         shipping_address=order_data.shipping_address,
         customer_phone=order_data.customer_phone,

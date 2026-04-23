@@ -152,8 +152,8 @@ export default function StitchScreenFrame({ html, title, fitContent = true }) {
     
     // Apply VIP/PRO discount
     let discountPercent = 0
-    if (user?.subscription_tier === 'vip') discountPercent = 0.15
-    else if (user?.subscription_tier === 'pro') discountPercent = 0.10
+    if (user?.subscription_tier === 'vip') discountPercent = 0.10
+    else if (user?.subscription_tier === 'pro') discountPercent = 0.05
     
     const discount = Math.round(subtotal * discountPercent)
     
@@ -451,8 +451,8 @@ export default function StitchScreenFrame({ html, title, fitContent = true }) {
     
     // Apply VIP/PRO discount
     let discountPercent = 0
-    if (user?.subscription_tier === 'vip') discountPercent = 0.15
-    else if (user?.subscription_tier === 'pro') discountPercent = 0.10
+    if (user?.subscription_tier === 'vip') discountPercent = 0.10
+    else if (user?.subscription_tier === 'pro') discountPercent = 0.05
     
     const discount = Math.round(subtotal * discountPercent)
     
