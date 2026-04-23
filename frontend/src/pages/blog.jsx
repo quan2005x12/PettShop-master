@@ -96,27 +96,27 @@ export default function BlogPage() {
 
       {/* Featured Post */}
       {featuredBlog && activeCategory === 'All' && (
-        <section className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
+        <section className="max-w-5xl mx-auto px-6 -mt-16 relative z-20">
           <Link to={`/blog/${featuredBlog.id}`} className="group block">
-            <div className="bg-white rounded-[3rem] p-4 shadow-2xl shadow-stone-200/50 flex flex-col lg:flex-row gap-12 overflow-hidden border border-stone-100 transition-all duration-700 hover:shadow-stone-300/60 hover:-translate-y-2">
-              <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto rounded-[2.5rem] overflow-hidden bg-stone-50">
+            <div className="bg-white rounded-[3rem] p-3 shadow-2xl shadow-stone-200/50 flex flex-col lg:flex-row gap-8 overflow-hidden border border-stone-100 transition-all duration-700 hover:shadow-stone-300/60 hover:-translate-y-2">
+              <div className="lg:w-1/2 aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-stone-50">
                 <img 
                   src={featuredBlog.image_url || '/images/blog-dog-food.png'} 
                   alt={featuredBlog.title}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
                 />
               </div>
-              <div className="lg:w-1/2 flex flex-col justify-center p-8 lg:p-12">
+              <div className="lg:w-1/2 flex flex-col justify-center p-6 lg:p-10">
                 <div className="flex items-center gap-4 text-[10px] font-black text-primary uppercase tracking-widest mb-6">
                   <span className="px-3 py-1 bg-teal-50 rounded-full">{featuredBlog.category}</span>
                   <span className="w-1 h-1 bg-stone-200 rounded-full"></span>
-                  <span className="text-stone-400">8 PHÚT ĐỌC</span>
+                  <span className="text-stone-400">{featuredBlog.read_time || 8} PHÚT ĐỌC</span>
                 </div>
-                <h2 className="text-4xl font-headline font-black text-stone-800 tracking-tighter mb-6 leading-[1.1] group-hover:text-primary transition-colors">
+                <h2 className="text-3xl font-headline font-black text-stone-800 tracking-tighter mb-4 leading-[1.1] group-hover:text-primary transition-colors">
                   {featuredBlog.title}
                 </h2>
-                <p className="text-lg text-stone-400 font-medium leading-relaxed mb-10 line-clamp-3">
-                  {featuredBlog.summary}
+                <p className="text-base text-stone-400 font-medium leading-relaxed mb-8 line-clamp-3">
+                  {featuredBlog.summary || featuredBlog.excerpt}
                 </p>
                 <div className="mt-auto flex items-center gap-4">
                   <div className="w-12 h-12 bg-stone-100 rounded-2xl flex items-center justify-center font-black text-stone-400">
@@ -124,7 +124,7 @@ export default function BlogPage() {
                   </div>
                   <div>
                     <p className="text-sm font-black text-stone-800">{featuredBlog.author || 'PETT Editor'}</p>
-                    <p className="text-[10px] font-bold text-stone-300 uppercase">2 ngày trước</p>
+                    <p className="text-[10px] font-bold text-stone-300 uppercase">{new Date(featuredBlog.created_at).toLocaleDateString('vi-VN')}</p>
                   </div>
                 </div>
               </div>
@@ -134,8 +134,8 @@ export default function BlogPage() {
       )}
 
       {/* Grid Posts */}
-      <section className="max-w-7xl mx-auto px-6 mt-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+      <section className="max-w-5xl mx-auto px-6 mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {otherBlogs.map((blog, idx) => (
             <BlogCard key={blog.id} blog={blog} index={idx} />
           ))}
@@ -149,13 +149,13 @@ function BlogCard({ blog, index }) {
   return (
     <div className="reveal-up group" style={{'--delay': `${index * 50}ms`}}>
       <Link to={`/blog/${blog.id}`} className="block">
-        <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-stone-50 mb-8 border border-stone-100 shadow-sm group-hover:shadow-xl transition-all duration-500 group-hover:-translate-y-2">
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-50 mb-6 border border-stone-100 shadow-sm group-hover:shadow-xl transition-all duration-500 group-hover:-translate-y-2">
           <img 
             src={blog.image_url || '/images/products/salmon-bites-1.webp'} 
             alt={blog.title}
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
           />
-          <div className="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
+          <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
             {blog.category}
           </div>
         </div>
@@ -173,7 +173,7 @@ function BlogCard({ blog, index }) {
                </div>
                <span className="text-[10px] font-black text-stone-800 uppercase tracking-widest">{blog.author || 'PETT'}</span>
              </div>
-             <span className="text-[10px] font-bold text-stone-300 uppercase">May 2024</span>
+             <span className="text-[10px] font-bold text-stone-300 uppercase">{new Date(blog.created_at).toLocaleDateString('vi-VN')}</span>
           </div>
         </div>
       </Link>
