@@ -1,0 +1,209 @@
+[
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Balo Trong Suốt AirPod Hồng",
+    "price": 1250000,
+    "image_url": "/images/products/vn-11134207-7r98o-lqdazi2he9tjdb.webp",
+    "description": "Balo phi hành gia cho chó mèo nhỏ, thoáng khí và tiện mang đi chơi.",
+    "id": "balo-trong-suốt-airpod-hồng"
+  },
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Balo Trong Suốt AirPod Vàng",
+    "price": 1280000,
+    "image_url": "/images/products/vn-11134207-7r98o-lqdazi2hbgone5.webp",
+    "description": "Khoang rộng cho thú cưng cỡ nhỏ, tiện di chuyển hàng ngày.",
+    "id": "balo-trong-suốt-airpod-vàng"
+  },
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Balo Trong Suốt AirPod Xám",
+    "price": 1190000,
+    "image_url": "/images/products/vn-11134207-7r98o-lqdazi2hfodz42.webp",
+    "description": "Tông màu trung tính, dễ vệ sinh, dùng tốt cho cả chó và mèo.",
+    "id": "balo-trong-suốt-airpod-xám"
+  },
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Balo Trong Suốt Đen Xanh",
+    "price": 1340000,
+    "image_url": "/images/products/vn-11134207-7r98o-lqdazi2hmp87bd.webp",
+    "description": "Phong cách cá tính, mặt trước chống va đập khi di chuyển.",
+    "id": "balo-trong-suốt-đen-xanh"
+  },
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Lồng Cứng Vận Chuyển Xanh",
+    "price": 1520000,
+    "image_url": "/images/products/long-van-chuyen-cho-meo-aupet-bp27-pet-kennel1-400x400.webp",
+    "description": "Lồng nhựa cứng cửa thép, an toàn khi đi khám hoặc đi xa.",
+    "id": "lồng-cứng-vận-chuyển-xanh"
+  },
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Lồng Cứng Vận Chuyển Hồng",
+    "price": 1540000,
+    "image_url": "/images/products/long-van-chuyen-cho-meo-aupet-bp27-pet-kennel2-400x400.webp",
+    "description": "Khóa chắc chắn, tông màu nổi bật, phù hợp thú cưng nhỏ.",
+    "id": "lồng-cứng-vận-chuyển-hồng"
+  },
+  {
+    "category": "toys",
+    "pet_type": "dog,cat",
+    "name": "Chuồng Sắt Gấp Paw Crate",
+    "price": 1690000,
+    "image_url": "/images/products/chuong-sat-gap-cho-meo-nan-cung-paw-collapsible-crate.webp",
+    "description": "Chuồng nan thép cứng, có khay đáy tháo rời, phù hợp huấn luyện tại nhà.",
+    "id": "chuồng-sắt-gấp-paw-crate"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "dog",
+    "name": "Bánh Thưởng Cao Cấp Hương Cá Ngừ",
+    "price": 520000,
+    "image_url": "/images/products/Gemini_Generated_Image_lqjqpalqjqpalqjq.webp",
+    "description": "Thích hợp huấn luyện và ăn nhẹ, với hương vị cá ngừ tươi cùng Omega-3.",
+    "id": "bánh-thưởng-cao-cấp-hương-cá-ngừ"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "dog",
+    "name": "Xương Bàn Chải Cao Cấp Hương Thịt Gà",
+    "price": 480000,
+    "image_url": "/images/products/Gemini_Generated_Image_lju2vdlju2vdlju2.webp",
+    "description": "Hỗ trợ làm sạch răng, hương thịt gà tươi kết hợp canxi cho sức khỏe răng miệng.",
+    "id": "xương-bàn-chải-cao-cấp-hương-thịt-gà"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "dog",
+    "name": "Thức Ăn Mềm Cao Cấp Dành Cho Chó Cưng",
+    "price": 560000,
+    "image_url": "/images/products/Gemini_Generated_Image_gfiddygfiddygfid.webp",
+    "description": "Công thức dinh dưỡng toàn diện với thịt gà tươi và rau củ tự nhiên.",
+    "id": "thức-ăn-mềm-cao-cấp-dành-cho-chó-cưng"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "dog",
+    "name": "Thức Ăn Khô Cao Cấp Dành Cho Chó Cưng",
+    "price": 590000,
+    "image_url": "/images/products/Gemini_Generated_Image_dop9kydop9kydop9.webp",
+    "description": "Công thức dinh dưỡng toàn diện với thịt gà tươi và rau củ tự nhiên.",
+    "id": "thức-ăn-khô-cao-cấp-dành-cho-chó-cưng"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "cat",
+    "name": "Súp Thưởng Cao Cấp Vị Gà &amp; Dứa",
+    "price": 510000,
+    "image_url": "/images/products/Gemini_Generated_Image_xanty3xanty3xant.webp",
+    "description": "Thích hợp huấn luyện và ăn nhẹ, với thịt gà thật và nước ép dứa nguyên chất.",
+    "id": "súp-thưởng-cao-cấp-vị-gà-&amp;-dứa"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "cat",
+    "name": "Pate Trái Cây Cao Cấp Dành Cho Mèo",
+    "price": 540000,
+    "image_url": "/images/products/Gemini_Generated_Image_p3knslp3knslp3kn.webp",
+    "description": "Dinh dưỡng cân bằng từ trái cây tươi kết hợp đạm cá, mềm mịn dễ ăn cho mèo.",
+    "id": "pate-trái-cây-cao-cấp-dành-cho-mèo"
+  },
+  {
+    "category": "nutrition",
+    "pet_type": "cat",
+    "name": "Thức Ăn Khô Cao Cấp Dành Cho Mèo Cưng",
+    "price": 610000,
+    "image_url": "/images/products/Gemini_Generated_Image_7xcwik7xcwik7xcw.webp",
+    "description": "Công thức dinh dưỡng toàn diện với thịt gà tươi và rau củ tự nhiên cho mèo.",
+    "id": "thức-ăn-khô-cao-cấp-dành-cho-mèo-cưng"
+  },
+  {
+    "category": "accessories",
+    "pet_type": "dog,cat",
+    "name": "Giường nệm bông êm ái cao cấp",
+    "price": 220000,
+    "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuB3nPOrwjl-QBSivYM9gh6DgvNC0w-tvDWJzSUUFqz5ciEJ9CnrocO2ykIgifMUx1ZPOEOM2X-8zhXap2qGa46rVWOqrKZD6IL4Ri6q41FVADmpDyiY9X-RRWXg2usL1b3e5fD5-77UYlAvw00eEG8GBdOcMqpgkuYSEYks_SfMoSz8KZDTasbaL39VGc54SyTNMVj9n_CsN2KrDI7TNY3Sy35Td4enRbNrgCck4KUaXuLy5SWZD-JWyDXYN80kX9lEBMYH_C9y1Q",
+    "description": "Nệm êm ái, ôm thân, chất liệu mềm mại giúp thú cưng ngủ ngon và giữ ấm tốt hơn.",
+    "id": "giường-nệm-bông-êm-ái-cao-cấp"
+  },
+  {
+    "category": "accessories",
+    "pet_type": "dog",
+    "name": "Tháp cào móng 3 tầng cho mèo",
+    "price": 320000,
+    "image_url": "https://lh3.googleusercontent.com/aida-public/AB6AXuCyaqRtRGVS3agGTFAYzi6VzWZUdvY8MvmHeAS4dcChZcnh-f4S_am--brKrMk3gnH5rGoWTukLQhY4pGTlVcpycDoYY9YcZ3U1y7mD3Ykx-j_X0hvtkWxu7Y28KR7HA2RxIqIGN_-_k0V1cWxnQAhHTeCC8Nk-Gn0IU6eKP8ch0CCGXCcQIfAB6agWSZOJBviS7TDMccJWzrZ3RVFvZOgHHUpO_ypgWyOQXj355DtB5vqGYZabQ-P6Pib38xNaIpokhAFAgm8Oow",
+    "description": "Thiết kế nhiều tầng với trụ cào bền chắc, giúp mèo vận động và mài móng mỗi ngày.",
+    "id": "tháp-cào-móng-3-tầng-cho-mèo"
+  },
+  {
+    "category": "accessories",
+    "pet_type": "dog,cat",
+    "name": "Bộ dây dắt da thật classic",
+    "price": 180000,
+    "image_url": "/images/products/download.jpg",
+    "description": "Dây dắt da thật cao cấp, chắc tay cầm, phù hợp đi dạo hằng ngày cho chó và mèo.",
+    "id": "bộ-dây-dắt-da-thật-classic"
+  },
+  {
+    "category": "accessories",
+    "pet_type": "dog,cat",
+    "name": "Dây Dắt Tự Rút Flexi Xanh",
+    "price": 210000,
+    "image_url": "/images/products/e6f5787eafd13e7ca8ace457f618cb63.jpg.webp",
+    "description": "Cơ chế khóa nhanh bằng một nút bấm, dây dài linh hoạt khi đi dạo ngoài trời.",
+    "id": "dây-dắt-tự-rút-flexi-xanh"
+  },
+  {
+    "category": "accessories",
+    "pet_type": "dog,cat",
+    "name": "Dây Dắt Bản Đen Essential",
+    "price": 120000,
+    "image_url": "/images/products/H63f04c9544344320bf6bf64f82889489W.jpg_300x300.avif",
+    "description": "Thiết kế tối giản, nhẹ tay cầm, phù hợp cho nhu cầu đi dạo hằng ngày.",
+    "id": "dây-dắt-bản-đen-essential"
+  },
+  {
+    "category": "accessories",
+    "pet_type": "dog,cat",
+    "name": "Dây Dắt Tự Rút Flexi Pro",
+    "price": 230000,
+    "image_url": "/images/products/H515cfae316ec4d9d83f805b7469821336.png_300x300.avif",
+    "description": "Tay cầm công thái học, khóa hãm nhạy, dây trượt mượt cho trải nghiệm kiểm soát tốt.",
+    "id": "dây-dắt-tự-rút-flexi-pro"
+  },
+  {
+    "id": "plan-plus",
+    "name": "Gói Plus",
+    "category": "subscription",
+    "pet_type": "all",
+    "price": 599000,
+    "image_url": "/images/pett-bag.webp",
+    "description": "Gói cơ bản hằng tháng"
+  },
+  {
+    "id": "plan-pro",
+    "name": "Gói Pro",
+    "category": "subscription",
+    "pet_type": "all",
+    "price": 998000,
+    "image_url": "/images/pett-bag.webp",
+    "description": "Gói chăm sóc cân bằng dinh dưỡng"
+  },
+  {
+    "id": "plan-ultra",
+    "name": "Gói Ultra",
+    "category": "subscription",
+    "pet_type": "all",
+    "price": 1998000,
+    "image_url": "/images/pett-bag.webp",
+    "description": "Gói chăm sóc chuyên sâu toàn diện"
+  }
+]

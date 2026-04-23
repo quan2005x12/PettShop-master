@@ -19,6 +19,21 @@ app = FastAPI(title="PETT Shop API")
 # Ensure all tables exist (creates new ones without dropping existing)
 models.Base.metadata.create_all(bind=database.engine)
 
+@app.on_event("startup")
+def check_db_initialized():
+    db = database.SessionLocal()
+    try:
+        product_count = db.query(models.Product).count()
+        if product_count == 0:
+            print("\n" + "!"*60)
+            print("WARNING: Database is empty!")
+            print("Please run 'python init_db.py' to seed the initial data.")
+            print("!"*60 + "\n")
+    except Exception as e:
+        print(f"Error checking database: {e}")
+    finally:
+        db.close()
+
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
