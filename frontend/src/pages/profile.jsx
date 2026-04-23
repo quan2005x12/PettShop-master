@@ -77,8 +77,8 @@ export default function ProfilePage() {
               <p className="text-slate-500 font-medium">{user.email}</p>
               <div className="flex items-center gap-2 mt-2">
                 <span className="px-3 py-1 bg-teal-50 text-teal-700 text-[10px] font-black uppercase tracking-widest rounded-full border border-teal-100">
-                  {user.subscription_tier === 'vip' ? 'Thành viên VIP (Giảm 15%)' : 
-                   user.subscription_tier === 'pro' ? 'Thành viên PRO (Giảm 10%)' :
+                  {user.subscription_tier === 'vip' ? 'Thành viên VIP' : 
+                   user.subscription_tier === 'pro' ? 'Thành viên PRO' :
                    user.subscription_tier === 'basic' ? 'Thành viên BASIC' : 'Khách hàng Thân thiết'}
                 </span>
               </div>

@@ -47,14 +47,26 @@ export default function OrderTrackingPage() {
     </div>
   )
 
+  if (order?.status === 'cancelled') return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+      <span className="material-symbols-outlined text-6xl text-red-400 mb-4">cancel</span>
+      <h2 className="text-2xl font-black text-stone-800 mb-2">Đơn hàng đã bị hủy</h2>
+      <p className="text-stone-500 mb-6">Đơn hàng này đã bị hủy và không thể theo dõi tiếp.</p>
+      <Link to="/profile" className="px-8 py-3 bg-teal-600 text-white rounded-2xl font-black uppercase tracking-widest">Quay lại hồ sơ</Link>
+    </div>
+  )
+
   const steps = [
-    { label: 'Đã xác nhận', status: ['pending', 'confirmed', 'processing', 'shipping', 'completed'], icon: 'check_circle' },
-    { label: 'Chuẩn bị', status: ['processing', 'shipping', 'completed'], icon: 'inventory_2' },
+    { label: 'Đã đặt hàng', status: ['pending', 'confirmed', 'shipping', 'completed'], icon: 'shopping_cart' },
+    { label: 'Đã xác nhận', status: ['confirmed', 'shipping', 'completed'], icon: 'check_circle' },
     { label: 'Đang giao', status: ['shipping', 'completed'], icon: 'local_shipping' },
     { label: 'Hoàn tất', status: ['completed'], icon: 'home' }
   ]
 
-  const currentStepIndex = steps.findIndex(step => step.status.includes(order.status))
+  // Find the highest index where the current status is included
+  const currentStepIndex = steps.reduce((highest, step, index) => {
+    return step.status.includes(order.status) ? index : highest
+  }, 0)
 
   return (
     <div className="min-h-screen bg-[#fbfaee] font-body text-stone-800 p-4 md:p-10">
