@@ -504,6 +504,32 @@ def admin_get_blogs(
 ):
     return db.query(models.BlogPost).order_by(models.BlogPost.created_at.desc()).all()
 
+@app.post("/api/admin/blogs", response_model=schemas.BlogPost)
+def admin_create_blog(
+    blog_data: schemas.BlogPostCreate,
+    current_user: models.User = Depends(auth.get_current_admin),
+    db: Session = Depends(database.get_db)
+):
+    # Check if ID already exists
+    existing = db.query(models.BlogPost).filter(models.BlogPost.id == blog_data.id).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Blog ID already exists")
+    
+    new_blog = models.BlogPost(
+        id=blog_data.id,
+        title=blog_data.title,
+        category=blog_data.category,
+        excerpt=blog_data.excerpt,
+        content=blog_data.content,
+        image_url=blog_data.image_url,
+        read_time=blog_data.read_time,
+        author=blog_data.author
+    )
+    db.add(new_blog)
+    db.commit()
+    db.refresh(new_blog)
+    return new_blog
+
 @app.put("/api/admin/blogs/{blog_id}", response_model=schemas.BlogPost)
 def admin_update_blog(
     blog_id: str,

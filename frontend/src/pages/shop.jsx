@@ -76,8 +76,10 @@ export default function ShopPage() {
     // Pet Type
     result = result.filter(p => {
       if (!p.pet_type) return true
-      const types = Array.isArray(p.pet_type) ? p.pet_type : [p.pet_type]
-      return types.some(t => activePets.includes(t.toLowerCase()))
+      const types = Array.isArray(p.pet_type) 
+        ? p.pet_type 
+        : (typeof p.pet_type === 'string' ? p.pet_type.split(',').map(s => s.trim()) : [p.pet_type]);
+      return types.some(t => t && activePets.includes(t.toLowerCase()))
     })
 
     // Sort
@@ -304,7 +306,15 @@ function ProductCard({ product, index, onAddToCart, onBuyNow, onQuickView }) {
             <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur shadow-sm rounded-full flex items-center gap-1.5 z-10">
               <span className="material-symbols-outlined text-[12px] text-primary">pets</span>
               <span className="text-[10px] font-black uppercase tracking-widest text-stone-600">
-                {Array.isArray(product.pet_type) ? (product.pet_type.includes('dog') ? 'Cho Chó' : 'Cho Mèo') : (product.pet_type === 'dog' ? 'Cho Chó' : 'Cho Mèo')}
+                {(() => {
+                  const types = Array.isArray(product.pet_type) ? product.pet_type : (typeof product.pet_type === 'string' ? product.pet_type.split(',') : [product.pet_type]);
+                  const isDog = types.some(t => t?.toLowerCase().includes('dog'));
+                  const isCat = types.some(t => t?.toLowerCase().includes('cat'));
+                  if (isDog && isCat) return 'Chó & Mèo';
+                  if (isDog) return 'Cho Chó';
+                  if (isCat) return 'Cho Mèo';
+                  return 'Thú cưng';
+                })()}
               </span>
             </div>
           )}

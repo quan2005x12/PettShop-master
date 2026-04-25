@@ -138,6 +138,11 @@ export default function AdminBlogsPage() {
                   <textarea rows="3" required value={createForm.excerpt} onChange={e => setCreateForm({...createForm, excerpt: e.target.value})}
                     className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-medium focus:ring-2 focus:ring-teal-600/10 outline-none resize-none"></textarea>
                 </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black text-stone-400 uppercase tracking-widest ml-1">Đường dẫn hình ảnh (URL)</label>
+                  <input required value={createForm.image_url} onChange={e => setCreateForm({...createForm, image_url: e.target.value})}
+                    placeholder="/images/blog/..." className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-bold focus:ring-2 focus:ring-teal-600/10 outline-none" />
+                </div>
               </div>
             </div>
             <div className="space-y-1">
@@ -168,8 +173,12 @@ export default function AdminBlogsPage() {
                         className="w-24 px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-bold focus:ring-2 focus:ring-teal-600/10 outline-none" />
                     </div>
                   </div>
-                  <textarea value={editForm.excerpt} onChange={e => setEditForm({...editForm, excerpt: e.target.value})} rows={3}
-                    className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-medium focus:ring-2 focus:ring-teal-600/10 outline-none resize-none" />
+                  <div className="space-y-4">
+                    <textarea value={editForm.excerpt} onChange={e => setEditForm({...editForm, excerpt: e.target.value})} rows={3}
+                      className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-medium focus:ring-2 focus:ring-teal-600/10 outline-none resize-none" />
+                    <input value={editForm.image_url} onChange={e => setEditForm({...editForm, image_url: e.target.value})}
+                      placeholder="Image URL" className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-bold focus:ring-2 focus:ring-teal-600/10 outline-none" />
+                  </div>
                 </div>
                 <div className="flex gap-3 justify-end">
                   <button onClick={() => saveEdit(b.id)} className="px-8 py-3 bg-teal-600 text-white text-[10px] font-black rounded-full uppercase tracking-widest shadow-lg shadow-teal-600/20 hover:bg-teal-700 transition-all">Lưu thay đổi</button>

@@ -27,7 +27,11 @@ export default function AdminProductsPage() {
   const fetchProducts = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/admin/products`, { headers: headers() })
-      if (res.ok) setProducts(await res.json())
+      if (res.ok) {
+        const data = await res.json()
+        // Loại bỏ các gói định kỳ khỏi danh sách sản phẩm
+        setProducts(data.filter(p => p.category !== 'subscription' && !p.id.startsWith('plan-')))
+      }
     } catch (e) { console.error(e) }
     finally { setLoading(false) }
   }
@@ -215,13 +219,23 @@ export default function AdminProductsPage() {
                           {p.stock} <span className="text-[8px] uppercase tracking-widest ml-0.5">món</span>
                         </span>
                       </td>
-                      <td className="p-8 text-right space-x-2">
-                        <button onClick={() => startEdit(p)} className="w-10 h-10 bg-teal-50 text-teal-600 rounded-full hover:bg-teal-600 hover:text-white transition-all inline-flex items-center justify-center">
-                          <span className="material-symbols-outlined text-lg">edit</span>
-                        </button>
-                        <button onClick={() => deleteProduct(p.id, p.name)} className="w-10 h-10 bg-red-50 text-red-400 rounded-full hover:bg-red-500 hover:text-white transition-all inline-flex items-center justify-center">
-                          <span className="material-symbols-outlined text-lg">delete</span>
-                        </button>
+                      <td className="p-8 text-right">
+                        <div className="flex justify-end gap-2">
+                          <button 
+                            onClick={() => startEdit(p)} 
+                            className="w-10 h-10 bg-white border border-stone-200 text-stone-600 rounded-xl hover:border-teal-600 hover:text-teal-600 hover:shadow-lg hover:shadow-teal-600/10 transition-all duration-300 inline-flex items-center justify-center group"
+                            title="Chỉnh sửa"
+                          >
+                            <span className="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">edit</span>
+                          </button>
+                          <button 
+                            onClick={() => deleteProduct(p.id, p.name)} 
+                            className="w-10 h-10 bg-white border border-stone-200 text-stone-400 rounded-xl hover:border-red-500 hover:text-red-500 hover:shadow-lg hover:shadow-red-500/10 transition-all duration-300 inline-flex items-center justify-center group"
+                            title="Xóa sản phẩm"
+                          >
+                            <span className="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">delete</span>
+                          </button>
+                        </div>
                       </td>
                     </>
                   )}
