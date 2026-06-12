@@ -101,7 +101,6 @@ export default function ProfilePage() {
                 <span className="material-symbols-outlined text-teal-600">calendar_today</span>
                 Gói định kỳ
               </h2>
-              <span className="text-xs font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded-md">Đang hoạt động</span>
             </div>
 
             {(() => {
@@ -115,36 +114,72 @@ export default function ProfilePage() {
                 )
               }
 
+              const parseVietnameseDate = (dateStr) => {
+                if (!dateStr) return new Date()
+                const parts = dateStr.split('/')
+                if (parts.length === 3) {
+                  return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`)
+                }
+                return new Date(dateStr)
+              }
+
               return (
                 <div className="space-y-4">
-                  {activeSubs.map((sub, idx) => (
-                    <div key={sub.uniqueKey || idx} className="p-5 bg-teal-900 text-white rounded-[2rem] shadow-xl shadow-teal-900/10 relative overflow-hidden group">
-                      <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
-                      <div className="relative z-10">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h3 className="text-lg font-black tracking-tight">{sub.name}</h3>
-                            <p className="text-xs text-white/60 font-medium">Bắt đầu: {sub.startDate}</p>
+                  {activeSubs.map((sub, idx) => {
+                    const startDate = parseVietnameseDate(sub.startDate)
+                    const endDate = new Date(startDate)
+                    endDate.setMonth(endDate.getMonth() + 1)
+                    
+                    const now = new Date()
+                    const isExpired = now > endDate
+                    const isExpiringSoon = !isExpired && (endDate - now) / (1000 * 60 * 60 * 24) <= 7
+
+                    const endDateStr = `${endDate.getDate().toString().padStart(2, '0')}/${(endDate.getMonth() + 1).toString().padStart(2, '0')}/${endDate.getFullYear()}`
+                    
+                    const bgClass = isExpired ? 'bg-slate-700' : 'bg-teal-900'
+                    const shadowClass = isExpired ? 'shadow-slate-900/10' : 'shadow-teal-900/10'
+
+                    return (
+                      <div key={sub.uniqueKey || idx} className={`p-5 text-white rounded-[2rem] shadow-xl relative overflow-hidden group ${bgClass} ${shadowClass}`}>
+                        <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
+                        <div className="relative z-10">
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <div className="flex items-center gap-2 mb-1">
+                                <h3 className={`text-lg font-black tracking-tight ${isExpired ? 'text-slate-300' : ''}`}>{sub.name}</h3>
+                                {isExpired ? (
+                                  <span className="px-2 py-0.5 bg-red-500/20 text-red-200 text-[10px] font-bold rounded-full border border-red-500/30">Hết hạn</span>
+                                ) : (
+                                  <span className="px-2 py-0.5 bg-green-500/20 text-green-200 text-[10px] font-bold rounded-full border border-green-500/30">Đang hoạt động</span>
+                                )}
+                              </div>
+                              <p className={`text-xs font-medium ${isExpired ? 'text-slate-400' : 'text-white/60'}`}>
+                                Bắt đầu: {sub.startDate} • Hết hạn: {endDateStr}
+                              </p>
+                              {isExpiringSoon && (
+                                <p className="text-xs text-orange-300 font-medium mt-1">Sắp hết hạn!</p>
+                              )}
+                            </div>
+                            <div className="p-2 bg-white/20 rounded-xl backdrop-blur-md">
+                              <span className={`material-symbols-outlined ${isExpired ? 'text-slate-400' : 'text-white'}`}>loyalty</span>
+                            </div>
                           </div>
-                          <div className="p-2 bg-white/20 rounded-xl backdrop-blur-md">
-                            <span className="material-symbols-outlined text-white">loyalty</span>
-                          </div>
-                        </div>
-                        <div className="flex items-end justify-between mt-4">
-                          <p className="text-sm font-medium text-white/80 grow pr-4">{sub.description}</p>
-                          <div className="flex flex-col items-end gap-2">
-                             <div className="px-3 py-1 bg-white text-teal-900 text-[10px] font-black rounded-full uppercase">MoMo</div>
-                             <button 
-                               onClick={() => handleCancelSubscription(sub.uniqueKey)}
-                               className="text-[10px] font-bold text-white/40 hover:text-white transition-colors underline underline-offset-4"
-                             >
-                               Hủy gói
-                             </button>
+                          <div className="flex items-end justify-between mt-4">
+                            <p className={`text-sm font-medium grow pr-4 ${isExpired ? 'text-slate-400' : 'text-white/80'}`}>{sub.description}</p>
+                            <div className="flex flex-col items-end gap-2">
+                               <div className={`px-3 py-1 text-[10px] font-black rounded-full uppercase ${isExpired ? 'bg-slate-600 text-slate-300' : 'bg-white text-teal-900'}`}>MoMo</div>
+                               <button 
+                                 onClick={() => handleCancelSubscription(sub.uniqueKey)}
+                                 className="text-[10px] font-bold text-white/40 hover:text-white transition-colors underline underline-offset-4"
+                               >
+                                 {isExpired ? 'Xóa gói' : 'Hủy gói'}
+                               </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )
             })()}

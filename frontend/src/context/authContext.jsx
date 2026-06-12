@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { fetchMe, loginWithGoogle as apiLogin } from '../api'
+import { fetchMe, loginWithGoogle as apiLogin, loginWithEmail as apiLoginEmail, registerWithEmail as apiRegisterEmail } from '../api'
 
 const AuthContext = createContext()
 const storageKey = 'pett_auth_user'
@@ -49,11 +49,42 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const loginWithEmail = async (email, password) => {
+    try {
+      const response = await apiLoginEmail(email, password)
+      const jwtToken = response.access_token
+      localStorage.setItem('pett_token', jwtToken)
+      const userData = await fetchMe(jwtToken)
+      setUser(userData)
+      localStorage.setItem(storageKey, JSON.stringify(userData))
+      return userData
+    } catch (err) {
+      console.error('Email login failed:', err)
+      throw err
+    }
+  }
+
+  const registerWithEmail = async (fullName, email, password) => {
+    try {
+      const response = await apiRegisterEmail(fullName, email, password)
+      const jwtToken = response.access_token
+      localStorage.setItem('pett_token', jwtToken)
+      const userData = await fetchMe(jwtToken)
+      setUser(userData)
+      localStorage.setItem(storageKey, JSON.stringify(userData))
+      return userData
+    } catch (err) {
+      console.error('Email register failed:', err)
+      throw err
+    }
+  }
+
   const logout = () => {
     setUser(null)
     localStorage.removeItem('pett_token')
     localStorage.removeItem(storageKey)
     localStorage.removeItem('pett_stitch_cart_v2') // Clear the cart too
+    localStorage.removeItem('pett_active_subscriptions') // Clear subscriptions
   }
 
   const refreshUser = async () => {
@@ -70,7 +101,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, logout, refreshUser }}>
+    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithEmail, registerWithEmail, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   )

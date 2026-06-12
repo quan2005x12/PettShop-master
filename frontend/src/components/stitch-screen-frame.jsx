@@ -27,7 +27,7 @@ const normalizeString = (value) =>
 export default function StitchScreenFrame({ html, title, fitContent = true }) {
   const iframeRef = useRef(null)
   const productsRef = useRef([])
-  const { user, loginWithGoogle, refreshUser } = useAuth()
+  const { user, loginWithGoogle, loginWithEmail, registerWithEmail, refreshUser } = useAuth()
   const { addToCart, cart, clearCart, getTotalItems, updateQuantity, removeFromCart } = useCart()
   const navigate = useNavigate()
   const location = useLocation()
@@ -1220,6 +1220,63 @@ export default function StitchScreenFrame({ html, title, fitContent = true }) {
             handleGoogleLogin()
             return true
           }
+          if (action === 'email-login') {
+            const email = doc.getElementById('email-input')?.value
+            const password = doc.getElementById('password-input')?.value
+            if (!email || !password) return true
+            
+            try {
+              const errEl = doc.getElementById('login-error')
+              if (errEl) errEl.classList.add('hidden')
+              
+              const btn = actionNode
+              const oldText = btn.innerHTML
+              btn.innerHTML = 'Đang xử lý...'
+              btn.disabled = true
+              
+              await loginWithEmail(email, password)
+            } catch (err) {
+              console.error('Email login failed in frame', err)
+              const errEl = doc.getElementById('login-error')
+              if (errEl) {
+                errEl.textContent = err.message || 'Đăng nhập thất bại. Kiểm tra email và mật khẩu.'
+                errEl.classList.remove('hidden')
+              }
+              const btn = actionNode
+              btn.innerHTML = 'Đăng nhập'
+              btn.disabled = false
+            }
+            return true
+          }
+          if (action === 'email-register') {
+            const name = doc.getElementById('name-input')?.value
+            const email = doc.getElementById('email-input')?.value
+            const password = doc.getElementById('password-input')?.value
+            if (!name || !email || !password) return true
+            
+            try {
+              const errEl = doc.getElementById('register-error')
+              if (errEl) errEl.classList.add('hidden')
+              
+              const btn = actionNode
+              const oldText = btn.innerHTML
+              btn.innerHTML = 'Đang xử lý...'
+              btn.disabled = true
+              
+              await registerWithEmail(name, email, password)
+            } catch (err) {
+              console.error('Email register failed in frame', err)
+              const errEl = doc.getElementById('register-error')
+              if (errEl) {
+                errEl.textContent = err.message || 'Đăng ký thất bại. Email có thể đã tồn tại.'
+                errEl.classList.remove('hidden')
+              }
+              const btn = actionNode
+              btn.innerHTML = 'Đăng ký'
+              btn.disabled = false
+            }
+            return true
+          }
           return false
         }
 
@@ -1483,7 +1540,7 @@ export default function StitchScreenFrame({ html, title, fitContent = true }) {
       if (resizeObserver) resizeObserver.disconnect()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fitContent, html, navigate, loginWithGoogle, user, cart, addToCart, clearCart, updateQuantity, removeFromCart, filters])
+  }, [fitContent, html, navigate, loginWithGoogle, loginWithEmail, registerWithEmail, user, cart, addToCart, clearCart, updateQuantity, removeFromCart, filters])
 
 
   return (

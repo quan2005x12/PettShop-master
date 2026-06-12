@@ -196,15 +196,15 @@ export default function ProductDetailPage() {
 
           {/* Key Benefits */}
           <div className="space-y-4 mb-12">
-            {(product.benefits || [
+            {(product.benefits?.length ? product.benefits : [
               { icon: 'verified', title: 'Chất lượng cao', desc: 'Nguyên liệu sạch, quy trình hiện đại.' },
               { icon: 'eco', title: 'Hữu cơ & Tự nhiên', desc: 'Không chất bảo quản, an toàn tuyệt đối.' }
             ]).map((b, i) => (
               <div key={i} className="flex items-start gap-4 p-4 rounded-2xl border border-stone-50 bg-stone-50/30">
-                <span className="material-symbols-outlined text-primary bg-white p-2 rounded-xl shadow-sm">{b.icon || 'check_circle'}</span>
-                <div>
-                  <p className="font-black text-stone-800 text-sm leading-tight mb-1">{b.title}</p>
-                  <p className="text-xs text-stone-400 font-medium">{b.desc}</p>
+                <span className="material-symbols-outlined text-primary bg-white p-2 rounded-xl shadow-sm">{typeof b === 'string' ? 'check_circle' : (b.icon || 'check_circle')}</span>
+                <div className="flex items-center">
+                  <p className="font-black text-stone-800 text-sm leading-tight">{typeof b === 'string' ? b : b.title}</p>
+                  {typeof b !== 'string' && b.desc && <p className="text-xs text-stone-400 font-medium mt-1">{b.desc}</p>}
                 </div>
               </div>
             ))}

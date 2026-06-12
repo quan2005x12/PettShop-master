@@ -136,8 +136,13 @@ export default function AdminProductsPage() {
                   className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-bold focus:ring-2 focus:ring-teal-600/10 outline-none appearance-none">
                   <option value="nutrition">Dinh dưỡng</option>
                   <option value="accessories">Phụ kiện</option>
-                  <option value="toys">Đồ chơi & Chuồng</option>
+                  <option value="toys">Đồ vận chuyển, nuôi nhốt</option>
                 </select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black text-stone-400 uppercase tracking-widest ml-1">URL Hình ảnh chính</label>
+                <input required value={createForm.images?.[0] || ''} onChange={e => setCreateForm({...createForm, images: [e.target.value]})}
+                  className="w-full px-6 py-4 bg-stone-50 border border-stone-100 rounded-2xl font-bold focus:ring-2 focus:ring-teal-600/10 outline-none" placeholder="VD: /images/products/dog-food.webp" />
               </div>
             </div>
             <div className="space-y-4">

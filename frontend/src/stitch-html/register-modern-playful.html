@@ -51,7 +51,32 @@
     <!-- Register Card -->
     <div class="login-card bg-surface rounded-[2.5rem] p-10 md:p-16 max-w-lg w-full text-center relative z-10">
         <h1 class="text-4xl font-headline font-black tracking-tight text-stone-800 mb-2">Tạo tài khoản</h1>
-        <p class="text-stone-500 mb-10">Tham gia cùng chúng tôi để chăm sóc thú cưng của bạn tốt hơn.</p>
+        <p class="text-stone-500 mb-8">Tham gia cùng chúng tôi để chăm sóc thú cưng của bạn tốt hơn.</p>
+
+        <form id="email-register-form" class="flex flex-col gap-4 mb-6 text-left" onsubmit="event.preventDefault();">
+            <div>
+                <label class="block text-sm font-bold text-stone-700 mb-1" for="name-input">Họ và tên</label>
+                <input id="name-input" type="text" placeholder="Nhập họ và tên" class="w-full border-stone-200 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-colors" required />
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-stone-700 mb-1" for="email-input">Email</label>
+                <input id="email-input" type="email" placeholder="Nhập email của bạn" class="w-full border-stone-200 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-colors" required />
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-stone-700 mb-1" for="password-input">Mật khẩu</label>
+                <input id="password-input" type="password" placeholder="Tạo mật khẩu" class="w-full border-stone-200 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary transition-colors" required />
+            </div>
+            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-2xl font-bold text-lg hover:bg-teal-700 transition-all active:scale-[0.98] shadow-md shadow-primary/20 mt-2" data-action="email-register">
+                Đăng ký
+            </button>
+            <p id="register-error" class="text-red-500 text-sm font-medium text-center hidden"></p>
+        </form>
+
+        <div class="relative flex items-center mb-6">
+            <div class="flex-grow border-t border-stone-200"></div>
+            <span class="flex-shrink-0 mx-4 text-stone-400 text-sm">Hoặc</span>
+            <div class="flex-grow border-t border-stone-200"></div>
+        </div>
 
         <button class="w-full flex items-center justify-center gap-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 py-4 rounded-2xl transition-all active:scale-[0.98]" data-action="google-login">
             <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google" class="w-6 h-6">

@@ -67,6 +67,32 @@ export const loginWithGoogle = async (token) => {
   return response.json()
 }
 
+export const loginWithEmail = async (email, password) => {
+  const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  })
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}))
+    throw new Error(errorData.detail || 'Login failed')
+  }
+  return response.json()
+}
+
+export const registerWithEmail = async (full_name, email, password) => {
+  const response = await fetch(`${API_BASE_URL}/auth/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_name, email, password })
+  })
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}))
+    throw new Error(errorData.detail || 'Registration failed')
+  }
+  return response.json()
+}
+
 export const fetchMe = async (token) => {
   const header = token ? { 'Authorization': `Bearer ${token}` } : getAuthHeader()
   const response = await fetch(`${API_BASE_URL}/auth/me`, {

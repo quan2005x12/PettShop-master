@@ -54,6 +54,10 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str
 
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
 class User(UserBase):
     id: int
     profile_pic: Optional[str] = None

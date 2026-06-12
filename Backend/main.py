@@ -136,7 +136,7 @@ def google_auth(auth_data: schemas.GoogleAuth, db: Session = Depends(database.ge
         user = db.query(models.User).filter(models.User.email == email).first()
         if not user:
             # Tự động cấp quyền admin cho email chỉ định
-            role = "admin" if email == "Mahoangvuhy2k5@gmail.com" else "customer"
+            role = "admin" if email in ["Mahoangvuhy2k5@gmail.com", "tienquank12@gmail.com", "tienquanlek12@gmail.com"] else "customer"
             user = models.User(
                 email=email,
                 full_name=full_name,
@@ -147,7 +147,7 @@ def google_auth(auth_data: schemas.GoogleAuth, db: Session = Depends(database.ge
         else:
             user.full_name = full_name
             user.profile_pic = profile_pic
-            if email == "Mahoangvuhy2k5@gmail.com":
+            if email in ["Mahoangvuhy2k5@gmail.com", "tienquank12@gmail.com", "tienquanlek12@gmail.com"]:
                 user.role = "admin"
             
         db.commit()
@@ -157,6 +157,40 @@ def google_auth(auth_data: schemas.GoogleAuth, db: Session = Depends(database.ge
         return {"access_token": access_token, "token_type": "bearer"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/auth/register", response_model=schemas.Token)
+def register(user_data: schemas.UserCreate, db: Session = Depends(database.get_db)):
+    user = db.query(models.User).filter(models.User.email == user_data.email).first()
+    if user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    hashed_password = auth.get_password_hash(user_data.password)
+    role = "admin" if user_data.email in ["Mahoangvuhy2k5@gmail.com", "tienquank12@gmail.com", "tienquanlek12@gmail.com"] else "customer"
+    
+    new_user = models.User(
+        email=user_data.email,
+        full_name=user_data.full_name,
+        hashed_password=hashed_password,
+        role=role
+    )
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    
+    access_token = auth.create_access_token(data={"sub": new_user.email})
+    return {"access_token": access_token, "token_type": "bearer"}
+
+@app.post("/api/auth/login", response_model=schemas.Token)
+def login(user_data: schemas.UserLogin, db: Session = Depends(database.get_db)):
+    user = auth.authenticate_user(db, user_data.email, user_data.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token = auth.create_access_token(data={"sub": user.email})
+    return {"access_token": access_token, "token_type": "bearer"}
 
 @app.get("/api/auth/me", response_model=schemas.User)
 def get_me(current_user: models.User = Depends(auth.get_current_user)):

@@ -18,9 +18,16 @@ const getProductImage = (product) => {
 const CATEGORIES = [
   { id: 'all', label: 'Tất cả sản phẩm', icon: 'grid_view' },
   { id: 'nutrition', label: 'Dinh dưỡng', icon: 'restaurant' },
-  { id: 'toys', label: 'Đồ chơi & Vận chuyển', icon: 'toys' },
+  { id: 'toys', label: 'Đồ vận chuyển, nuôi nhốt', icon: 'toys' },
   { id: 'accessories', label: 'Phụ kiện', icon: 'content_cut' },
 ]
+
+const CATEGORY_MAP = {
+  nutrition: 'Dinh dưỡng',
+  toys: 'Đồ vận chuyển, nuôi nhốt',
+  accessories: 'Phụ kiện',
+  subscription: 'Gói định kỳ'
+}
 
 const PET_TYPES = [
   { id: 'dog', label: 'Chó', icon: 'pets' },
@@ -332,7 +339,7 @@ function ProductCard({ product, index, onAddToCart, onBuyNow, onQuickView }) {
         
         <div className="px-2">
           <div className="flex justify-between items-start gap-2 mb-2">
-            <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">{product.category}</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">{CATEGORY_MAP[product.category?.toLowerCase()] || product.category}</span>
             <span className="text-primary font-black text-lg">{formatVnd(product.price)}</span>
           </div>
           <Link to={`/product/${product.id}`}>
@@ -416,7 +423,7 @@ function QuickViewModal({ product, onClose, onAddToCart, onBuyNow }) {
         {/* Right: Info */}
         <div className="md:w-1/2 p-10 flex flex-col overflow-y-auto">
           <div className="mb-8">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary bg-teal-50 px-4 py-1.5 rounded-full mb-4 inline-block">{product.category}</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary bg-teal-50 px-4 py-1.5 rounded-full mb-4 inline-block">{CATEGORY_MAP[product.category?.toLowerCase()] || product.category}</span>
             <h2 className="text-3xl font-headline font-black tracking-tighter text-stone-800 mb-2 leading-none">{product.name}</h2>
             <div className="flex items-center gap-1 mb-6">
               {[...Array(5)].map((_, i) => (
